@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutternews/category/category_view.dart';
-import './home/home_view.dart';
+import 'package:flutternews/home/home_view.dart';
 
 void main() => runApp(App());
 
@@ -19,20 +19,20 @@ class App extends StatelessWidget {
               bottom: TabBar(
                 tabs: [
                   Tab(
-                    child: Text("OKEx", style: TextStyle(color: Colors.black)),
+                    child: Text("自选", style: TextStyle(color: Colors.black)),
                   ),
                   Tab(
-                    child: Text("Huobi", style: TextStyle(color: Colors.black)),
+                    child: Text("币币", style: TextStyle(color: Colors.black)),
                   )
-                ], indicatorColor: Colors.green,),
-              title: Text(
-                "Global",
-                style: TextStyle(color: Colors.black),
+                ],
+                indicatorColor: Colors.green,),
+              title: Text("Global", style: TextStyle(color: Colors.black),
               ),
               backgroundColor: Colors.white,
             ),
             body: TabBarView(children: [HomeView(), CategoryView()]),
           ),
-        ));
+        ),
+    );
   }
 }
