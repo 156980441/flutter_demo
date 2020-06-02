@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutternews/tool/net_manager.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   ScrollController _scrollController;
+  NetManager _netManager = NetManager();
   @override
   void initState() {
     super.initState();
@@ -18,9 +20,11 @@ class _HomeViewState extends State<HomeView> {
       ..addListener(() {
         if (_scrollController.position.pixels ==
             _scrollController.position.maxScrollExtent) {
-          print("loading");
+          print("the end");
         }
       });
+
+//    _requestData(1);
   }
 
   Widget _buildSwiper(BuildContext context) {
@@ -95,8 +99,13 @@ class _HomeViewState extends State<HomeView> {
 
   Future<Null> _onRefresh() async {
     await Future.delayed(Duration(seconds: 3), () {
-      print("loading");
+      print("pull down loading");
     });
+  }
+
+  void _requestData(int page) async {
+    String data = await _netManager.queryHomeData(page);
+    print(data);
   }
 
   @override
