@@ -1,23 +1,24 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'home_mode.g.dart';
+part 'home_model.g.dart';
 
 @JsonSerializable()
-
 class HomeModel {
   int code;
-  String msg;
-  List<HomeData> newlist;
+  String message;
+  List<HomeData> result;
+  HomeModel(this.code, this.message, this.result);
+  factory HomeModel.fromJson(Map<String, dynamic> json)=>_$HomeModelFromJson(json);
+  Map<String, dynamic> toJson() => _$HomeModelToJson(this);
 }
 
 @JsonSerializable()
 class HomeData {
-  String ctime;
+  String path;
+  String image;
   String title;
-  String description;
-  String picUrl;
-  String url;
-  HomeData(this.ctime, this.title, this.description, this.picUrl, this.url);
+  String passtime;
+  HomeData(this.passtime, this.title, this.image, this.path);
   factory HomeData.fromJson(Map<String, dynamic> json) => _$HomeDataFromJson(json);
-  Map<String, dynamic> toJson() => _$HomeDataFromJson(this);
+  Map<String, dynamic> toJson() => _$HomeDataToJson(this);
 }
