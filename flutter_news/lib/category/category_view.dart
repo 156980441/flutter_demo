@@ -8,6 +8,16 @@ class CategoryView extends StatefulWidget {
 }
 
 class _CategoryViewState extends State<CategoryView> {
+  List<String> _categorys = [
+    "BTC",
+    "ETH",
+    "EOS",
+    "USDT",
+    "BNB",
+    "OKB",
+    "HT",
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -15,6 +25,48 @@ class _CategoryViewState extends State<CategoryView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.black);
+    return Container(
+      child: ListView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          return _getItem(context, index);
+        },
+        itemCount: _categorys.length ~/ 2,
+      ),
+    );
+  }
+
+  Widget _getItem(BuildContext context, int index) {
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Container(
+            child: Center(
+              child: Text(
+                _categorys[index * 2],
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30, color: Colors.white),
+              ),
+            ),
+            width: MediaQuery.of(context).size.width / 2,
+            color: index % 2 == 0 ? Colors.orange : Colors.blueAccent,
+            height: 130,
+          ),
+          Container(
+            child: Center(
+              child: Text(
+                _categorys[index * 2 + 1],
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30, color: Colors.white),
+              ),
+            ),
+            width: MediaQuery.of(context).size.width / 2,
+            color: index % 2 != 0 ? Colors.orange : Colors.blueAccent,
+            height: 130,
+          ),
+        ],
+      ),
+      width: MediaQuery.of(context).size.width / 2,
+      height: 130,
+    );
   }
 }
