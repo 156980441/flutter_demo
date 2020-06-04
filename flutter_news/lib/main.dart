@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutternews/category/category_view.dart';
 import 'package:flutternews/home/home_view.dart';
+//import 'package:flutter/rendering.dart';
 
-void main() => runApp(App());
-
+void main() {
+//  debugPaintSizeEnabled=true;
+  runApp(App());
+}
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

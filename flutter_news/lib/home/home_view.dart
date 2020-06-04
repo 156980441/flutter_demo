@@ -87,6 +87,7 @@ class _HomeViewState extends State<HomeView> {
               Container(
                 child: Text(_datalist[index].title),
                 margin: EdgeInsets.only(left: 10, top: 5),
+                width: MediaQuery.of(context).size.width - 130 - 20,
               ),
               Container(
                 child: Text(_datalist[index].passtime),
@@ -97,10 +98,8 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
-      height: 110,
       width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.only(bottom: 1),
-      color: Colors.amber,
     );
   }
 
