@@ -18,7 +18,8 @@ class HomeData {
   String image;
   String title;
   String passtime;
-  HomeData(this.passtime, this.title, this.image, this.path);
+  String url;
+  HomeData(this.passtime, this.title, this.image, this.path, this.url);
   factory HomeData.fromJson(Map<String, dynamic> json) => _$HomeDataFromJson(json);
   Map<String, dynamic> toJson() => _$HomeDataToJson(this);
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutternews/model/home_model.dart';
 import 'package:flutternews/tool/net_manager.dart';
+import 'package:flutternews/collection/detail_view.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -59,46 +60,57 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _buildItem(BuildContext context, int index) {
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Container(
-            child: Image.network(
-              _datalist[index].image,
-              width: 130,
-              height: 110,
-              fit: BoxFit.cover,
+    return GestureDetector(
+      child: Container(
+        child: Row(
+          children: <Widget>[
+            Container(
+              child: Image.network(
+                _datalist[index].image,
+                width: 130,
+                height: 110,
+                fit: BoxFit.cover,
+              ),
+              color: Colors.grey,
             ),
-            color: Colors.grey,
-          ),
-          Column(
-            children: <Widget>[
-              Container(
-                child: Text(
-                  _datalist[index].title,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            Column(
+              children: <Widget>[
+                Container(
+                  child: Text(
+                    _datalist[index].title,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                  margin: EdgeInsets.only(left: 10, top: 10, right: 10),
+                  width: MediaQuery.of(context).size.width - 130 - 20,
                 ),
-                margin: EdgeInsets.only(left: 10, top: 10, right: 10),
-                width: MediaQuery.of(context).size.width - 130 - 20,
-              ),
-              Container(
-                child: Text(_datalist[index].title),
-                margin: EdgeInsets.only(left: 10, top: 5),
-                width: MediaQuery.of(context).size.width - 130 - 20,
-              ),
-              Container(
-                child: Text(_datalist[index].passtime),
-                margin: EdgeInsets.only(left: 10, top: 5),
-              ),
-            ],
-            crossAxisAlignment: CrossAxisAlignment.start,
-          ),
-        ],
+                Container(
+                  child: Text(_datalist[index].title),
+                  margin: EdgeInsets.only(left: 10, top: 5),
+                  width: MediaQuery.of(context).size.width - 130 - 20,
+                ),
+                Container(
+                  child: Text(_datalist[index].passtime),
+                  margin: EdgeInsets.only(left: 10, top: 5),
+                ),
+              ],
+              crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+          ],
+        ),
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.only(bottom: 1),
       ),
-      width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.only(bottom: 1),
+      onTap: () {
+        Navigator.push(context,
+          new MaterialPageRoute(builder:
+          (BuildContext context) {
+            return DetailView(_datalist[index].path, _datalist[index].title);
+          }
+          ),
+        );
+      },
     );
   }
 
