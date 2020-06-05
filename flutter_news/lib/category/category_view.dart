@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutternews/category/category_list_view.dart';
 
 class CategoryView extends StatefulWidget {
   @override
@@ -9,13 +10,14 @@ class CategoryView extends StatefulWidget {
 
 class _CategoryViewState extends State<CategoryView> {
   List<String> _categorys = [
-    "BTC",
-    "ETH",
-    "EOS",
-    "USDT",
-    "BNB",
-    "OKB",
-    "HT",
+    "Coinbase Pro",
+    "Bitstamp",
+    "Bitfinex",
+    "OKEx",
+    "Binance",
+    "Huobi",
+    "LakeBTC",
+    "Kraken"
   ];
 
   @override
@@ -39,29 +41,40 @@ class _CategoryViewState extends State<CategoryView> {
     return Container(
       child: Row(
         children: <Widget>[
-          Container(
-            child: Center(
-              child: Text(
-                _categorys[index * 2],
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 30, color: Colors.white),
+          GestureDetector(
+            child: Container(
+              child: Center(
+                child: Text(
+                  _categorys[index * 2],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 30, color: Colors.white),
+                ),
               ),
+              width: MediaQuery.of(context).size.width / 2,
+              color: index % 2 == 0 ? Colors.orange : Colors.blueAccent,
+              height: 130,
             ),
-            width: MediaQuery.of(context).size.width / 2,
-            color: index % 2 == 0 ? Colors.orange : Colors.blueAccent,
-            height: 130,
+            onTap: () {
+              Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context) {
+                return CategoryListView("", "");
+              }
+              ),
+              );
+            },
           ),
-          Container(
-            child: Center(
-              child: Text(
-                _categorys[index * 2 + 1],
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 30, color: Colors.white),
+          GestureDetector(
+            child: Container(
+              child: Center(
+                child: Text(
+                  _categorys[index * 2 + 1],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 30, color: Colors.white),
+                ),
               ),
+              width: MediaQuery.of(context).size.width / 2,
+              color: index % 2 != 0 ? Colors.orange : Colors.blueAccent,
+              height: 130,
             ),
-            width: MediaQuery.of(context).size.width / 2,
-            color: index % 2 != 0 ? Colors.orange : Colors.blueAccent,
-            height: 130,
           ),
         ],
       ),
