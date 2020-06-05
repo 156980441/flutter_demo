@@ -8,10 +8,9 @@ class CategoryListView extends StatefulWidget {
   CategoryListView(this.title, this.path);
   @override
   State<StatefulWidget> createState() {
-    return _CategoryListViewState("", "");
+    return _CategoryListViewState(title, "");
   }
 }
-
 
 class _CategoryListViewState extends State<CategoryListView> {
   String title;
@@ -21,7 +20,6 @@ class _CategoryListViewState extends State<CategoryListView> {
   List<CurrencyData> _datalist = List<CurrencyData>();
   _CategoryListViewState(this.title, this.path);
 
-  int _currentPage = 1;
   @override
   void initState() {
     super.initState();
@@ -29,12 +27,10 @@ class _CategoryListViewState extends State<CategoryListView> {
     _scrollController = ScrollController()
       ..addListener(() {
         if (_scrollController.position.pixels ==
-            _scrollController.position.maxScrollExtent) {
-          _requestData(_currentPage);
-        }
+            _scrollController.position.maxScrollExtent) {}
       });
 
-    _requestData(_currentPage);
+    _requestData();
   }
 
   @override
@@ -46,14 +42,14 @@ class _CategoryListViewState extends State<CategoryListView> {
         child: RefreshIndicator(
             child: ListView.builder(
               itemBuilder: (BuildContext context, int index) {
-
-                  return _buildItem(context, index);
+                return _buildItem(context, index);
               },
               itemCount: this._datalist.length,
               controller: _scrollController,
             ),
             onRefresh: _onRefresh),
-        height: MediaQuery.of(context).size.height - _appbar.preferredSize.height,
+        height:
+            MediaQuery.of(context).size.height - _appbar.preferredSize.height,
         width: MediaQuery.of(context).size.width,
         color: Colors.white,
       ),
@@ -79,7 +75,7 @@ class _CategoryListViewState extends State<CategoryListView> {
               Container(
                 child: Text(_datalist[index].name),
                 margin: EdgeInsets.only(left: 10, top: 5),
-                width: MediaQuery.of(context).size.width  - 20,
+                width: MediaQuery.of(context).size.width - 20,
               ),
             ],
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,20 +88,14 @@ class _CategoryListViewState extends State<CategoryListView> {
   }
 
   Future<Null> _onRefresh() async {
-    _currentPage = 1;
-    await _requestData(_currentPage);
+    await _requestData();
   }
 
-  Future _requestData(int page) async {
+  Future _requestData() async {
     CurrencyModel data = await _netManager.queryCurrencyData();
-    if (page == 1) {
-      _datalist.clear();
-      _datalist.addAll(data.result);
-    } else {
-      _datalist.addAll(data.result);
-    }
-    _currentPage++;
-    this.setState((){});
+    _datalist.clear();
+    _datalist.addAll(data.result);
+    this.setState(() {});
     return;
   }
 }

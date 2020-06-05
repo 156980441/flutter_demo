@@ -21,7 +21,8 @@ class NetManager {
     var request = await httpClient.getUrl(uri);
     var response = await request.close();
     var responseBody = await response.transform(utf8.decoder).join();
-    return CurrencyPairModel.fromJson(json.decode(responseBody));
+    Map<String, dynamic> map = {"result":responseBody};
+    return CurrencyPairModel.fromJson(json.decode(map.toString()));
   }
 
   Future<CurrencyModel> queryCurrencyData () async {
@@ -30,6 +31,8 @@ class NetManager {
     var request = await httpClient.getUrl(uri);
     var response = await request.close();
     var responseBody = await response.transform(utf8.decoder).join();
-    return CurrencyModel.fromJson(json.decode(responseBody));
+    var tmp = json.decode(responseBody);
+    Map<String, dynamic> map = {"result":tmp};
+    return CurrencyModel.fromJson(map);
   }
 }

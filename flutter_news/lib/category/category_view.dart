@@ -56,7 +56,7 @@ class _CategoryViewState extends State<CategoryView> {
             ),
             onTap: () {
               Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context) {
-                return CategoryListView("", "");
+                return CategoryListView(_categorys[index], "");
               }
               ),
               );
