@@ -106,7 +106,7 @@ class _HomeViewState extends State<HomeView> {
         Navigator.push(context,
           new MaterialPageRoute(builder:
           (BuildContext context) {
-            return DetailView(_datalist[index].path, _datalist[index].title);
+            return DetailView(_datalist[index].title, _datalist[index].path);
           }
           ),
         );

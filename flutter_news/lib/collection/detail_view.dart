@@ -30,7 +30,7 @@ class _DetailViewState extends State<DetailView> {
         child: FlutterNativeWeb(
           onWebCreated: (WebController controller) {
             _controller = controller;
-            controller.loadData(this.url);
+            _controller.loadUrl(this.url);
           },
         ),
         width: MediaQuery.of(context).size.width,
