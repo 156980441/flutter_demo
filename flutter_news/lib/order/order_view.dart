@@ -14,8 +14,8 @@ class _OrderViewState extends State<OrderView> {
   void initState() {
     super.initState();
 
-    OrderModel model = OrderModel('Buy', 'BTC/USDT', '07.05 17:50:45', '0.2 BTC',
-        '203.8 USDT', '0.03 BTC', '20 USDT');
+    OrderModel model = OrderModel('Buy', 'BTC/USDT', '07.05 17:50:45',
+        '0.2 BTC', '203.8 USDT', '0.03 BTC', '20 USDT');
     _orders.add(model);
   }
 
@@ -33,31 +33,53 @@ class _OrderViewState extends State<OrderView> {
 
   Widget _getItem(BuildContext context, int index) {
     return Container(
-      child: Row(
-        children: <Widget>[
-          GestureDetector(
-            child: Container(
-              child: Center(
+      padding: const EdgeInsets.all(15.0),
+      child: GestureDetector(
+        child: Container(
+          child: Row(
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.all(2.0),
+                color: Colors.green,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    _orders[index].direction,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 10, color: Colors.white),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.center,
                 child: Text(
                   _orders[index].symbol,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 30, color: Colors.white),
+                  style: TextStyle(fontSize: 14, color: Colors.black),
                 ),
               ),
-              width: MediaQuery.of(context).size.width,
-              color: index % 2 == 0 ? Colors.orange : Colors.blueAccent,
-              height: 130,
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                new MaterialPageRoute(builder: (BuildContext context) {
-                  return null;
-                }),
-              );
-            },
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  _orders[index].ctime,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+              ),
+            ],
           ),
-        ],
+          width: MediaQuery.of(context).size.width,
+          color: index % 2 == 0 ? Colors.orange : Colors.blueAccent,
+          height: 130,
+        ),
+        onTap: () {
+          Navigator.push(
+            context,
+            new MaterialPageRoute(builder: (BuildContext context) {
+              return null;
+            }),
+          );
+        },
       ),
       width: MediaQuery.of(context).size.width,
       height: 130,
