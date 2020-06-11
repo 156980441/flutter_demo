@@ -36,35 +36,86 @@ class _OrderViewState extends State<OrderView> {
       padding: const EdgeInsets.all(15.0),
       child: GestureDetector(
         child: Container(
-          child: Row(
+          child: Column(
             children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(2.0),
-                color: Colors.green,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    _orders[index].direction,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 10, color: Colors.white),
+              Row(
+                children: <Widget>[
+                  Container(
+                    padding: const EdgeInsets.all(2.0),
+                    color: Colors.green,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        _orders[index].direction,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 10, color: Colors.white),
+                      ),
+                    ),
                   ),
-                ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      _orders[index].symbol,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 14, color: Colors.black),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      _orders[index].ctime,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                  ),
+                ],
               ),
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  _orders[index].symbol,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 14, color: Colors.black),
-                ),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  _orders[index].ctime,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
-                ),
+
+              Row(
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Amount ${_orders[index].amount}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 12, color: Colors.black),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Filled ${_orders[index].filled}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 12, color: Colors.black),
+                        ),
+                      ),
+
+                    ],
+                  ),
+
+                  Column(
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Price ${_orders[index].price}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 12, color: Colors.black),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Avg Price ${_orders[index].margin}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 12, color: Colors.black),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
@@ -82,7 +133,7 @@ class _OrderViewState extends State<OrderView> {
         },
       ),
       width: MediaQuery.of(context).size.width,
-      height: 130,
+      height: 96,
     );
   }
 }
