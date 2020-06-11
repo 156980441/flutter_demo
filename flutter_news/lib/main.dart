@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutternews/category/category_view.dart';
 import 'package:flutternews/home/home_view.dart';
+import 'package:flutternews/order/order_view.dart';
 //import 'package:flutter/rendering.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class App extends StatelessWidget {
 
   Widget _containerView() {
     return DefaultTabController(
-        length: 2,
+        length: 3,
         child: MaterialApp(
           home: Scaffold(
             appBar: AppBar(
@@ -26,6 +27,9 @@ class App extends StatelessWidget {
                   ),
                   Tab(
                     child: Text("币币", style: TextStyle(color: Colors.black)),
+                  ),
+                  Tab(
+                    child: Text("订单", style: TextStyle(color: Colors.black)),
                   )
                 ],
                 indicatorColor: Colors.green,),
@@ -33,7 +37,7 @@ class App extends StatelessWidget {
               ),
               backgroundColor: Colors.white,
             ),
-            body: TabBarView(children: [HomeView(), CategoryView()]),
+            body: TabBarView(children: [HomeView(), CategoryView(), OrderView()]),
           ),
         ),
     );
