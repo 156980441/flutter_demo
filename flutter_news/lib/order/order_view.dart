@@ -14,26 +14,44 @@ class _OrderViewState extends State<OrderView> {
   void initState() {
     super.initState();
 
-    OrderModel model = OrderModel('Buy', 'BTC/USDT', '07.05 17:50:45',
-        '0.2 BTC', '203.8 USDT', '0.03 BTC', '20 USDT');
+    OrderModel model = OrderModel(
+        'Buy',
+        'BTC/USD',
+        '07.05 17:50:45',
+        '0.234534534535 BTC',
+        '203.834534 USD',
+        '0.03345345 BTC',
+        '20.74656736 USD');
+    OrderModel model2 = OrderModel(
+        'Buy',
+        'BTC/USD',
+        '07.05 17:50:45',
+        '0.234534534535 BTC',
+        '203.834534 USD',
+        '0.03345345 BTC',
+        '20.74656736 USD');
     _orders.add(model);
+    _orders.add(model2);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: ListView.builder(
+      child: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
           return _getItem(context, index);
         },
         itemCount: _orders.length,
+        separatorBuilder: (BuildContext context, int index) => const Divider(
+          height: 1,
+          color: Color(0xFFCCCCCC),
+        ),
       ),
     );
   }
 
   Widget _getItem(BuildContext context, int index) {
     return Container(
-      color: Colors.amber,
       padding: const EdgeInsets.all(15.0),
       child: GestureDetector(
         child: Container(
@@ -43,6 +61,7 @@ class _OrderViewState extends State<OrderView> {
                 child: Row(
                   children: <Widget>[
                     Container(
+                      margin: const EdgeInsets.only(top: 4, bottom: 4),
                       color: Colors.green,
                       child: Center(
                         child: Text(
@@ -68,7 +87,8 @@ class _OrderViewState extends State<OrderView> {
                         child: Text(
                           _orders[index].ctime,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                          style:
+                              TextStyle(fontSize: 12, color: Color(0xFFCCCCCC)),
                         ),
                       ),
                     ),
@@ -101,21 +121,39 @@ class _OrderViewState extends State<OrderView> {
                       flex: 1,
                       child: Column(
                         children: <Widget>[
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Amount ${_orders[index].amount}',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: 12, color: Colors.black),
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Amount',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 12, color: Color(0xFF666666)),
+                              ),
+                              Text(
+                                '${_orders[index].amount}',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 12, color: Color(0xFF333333)),
+                              ),
+                            ],
                           ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Filled ${_orders[index].filled}',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: 12, color: Colors.black),
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Filled',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 12, color: Color(0xFF666666)),
+                              ),
+                              Text(
+                                '${_orders[index].filled}',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 12, color: Color(0xFF333333)),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -123,22 +161,41 @@ class _OrderViewState extends State<OrderView> {
                     Expanded(
                       flex: 1,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Price ${_orders[index].price}',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: 12, color: Colors.black),
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Price',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 12, color: Color(0xFF666666)),
+                              ),
+                              Text(
+                                '${_orders[index].price}',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 12, color: Color(0xFF333333)),
+                              ),
+                            ],
                           ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Avg Price ${_orders[index].margin}',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: 12, color: Colors.black),
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Avg Price',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 12, color: Color(0xFF666666)),
+                              ),
+                              Text(
+                                '${_orders[index].margin}',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 12, color: Color(0xFF333333)),
+                              ),
+                            ],
                           ),
                         ],
                       ),
