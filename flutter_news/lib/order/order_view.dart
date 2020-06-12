@@ -130,6 +130,7 @@ class _OrderViewState extends State<OrderView> {
                                 style: TextStyle(
                                     fontSize: 12, color: Color(0xFF666666)),
                               ),
+                              SizedBox(height: 1, width: 2,),
                               Text(
                                 '${_orders[index].amount}',
                                 textAlign: TextAlign.left,
@@ -147,6 +148,7 @@ class _OrderViewState extends State<OrderView> {
                                 style: TextStyle(
                                     fontSize: 12, color: Color(0xFF666666)),
                               ),
+                              SizedBox(height: 1, width: 2,),
                               Text(
                                 '${_orders[index].filled}',
                                 textAlign: TextAlign.left,
@@ -172,6 +174,7 @@ class _OrderViewState extends State<OrderView> {
                                 style: TextStyle(
                                     fontSize: 12, color: Color(0xFF666666)),
                               ),
+                              SizedBox(height: 1, width: 2,),
                               Text(
                                 '${_orders[index].price}',
                                 textAlign: TextAlign.left,
@@ -189,6 +192,7 @@ class _OrderViewState extends State<OrderView> {
                                 style: TextStyle(
                                     fontSize: 12, color: Color(0xFF666666)),
                               ),
+                              SizedBox(height: 1, width: 2,), // 我这里放了一个 SizedBox 来充当间距，不知道这种用法是否可取，还是说我应该弄个 Container 来设置 padding or margin
                               Text(
                                 '${_orders[index].margin}',
                                 textAlign: TextAlign.left,
