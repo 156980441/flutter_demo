@@ -33,109 +33,115 @@ class _OrderViewState extends State<OrderView> {
 
   Widget _getItem(BuildContext context, int index) {
     return Container(
+      color: Colors.amber,
       padding: const EdgeInsets.all(15.0),
       child: GestureDetector(
         child: Container(
           child: Column(
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.all(2.0),
-                    color: Colors.green,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        _orders[index].direction,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 10, color: Colors.white),
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      color: Colors.green,
+                      child: Center(
+                        child: Text(
+                          _orders[index].direction,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 10, color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 5, right: 15),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        _orders[index].symbol,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 14, color: Colors.black),
+                    Container(
+                      margin: const EdgeInsets.only(left: 5, right: 15),
+                      child: Center(
+                        child: Text(
+                          _orders[index].symbol,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 14, color: Colors.black),
+                        ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        _orders[index].ctime,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          _orders[index].ctime,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                        ),
                       ),
                     ),
-                  ),
-                  ButtonTheme(
-                    minWidth: 59,
-                    height: 24,
-                    child: FlatButton(
-                      color: Colors.white,
-                      textColor: Colors.blue,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.grey,
-                      padding: EdgeInsets.all(2.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {},
-                      child: Text(
-                        "Cancel",
-                        style: TextStyle(fontSize: 12.0),
+                    ButtonTheme(
+                      minWidth: 59,
+                      height: 24,
+                      child: FlatButton(
+                        color: Colors.white,
+                        textColor: Colors.blue,
+                        disabledColor: Colors.grey,
+                        disabledTextColor: Colors.grey,
+                        padding: EdgeInsets.all(2.0),
+                        splashColor: Colors.blueAccent,
+                        onPressed: () {},
+                        child: Text(
+                          "Cancel",
+                          style: TextStyle(fontSize: 12.0),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
+                height: 24,
               ),
               Container(
-                margin: const EdgeInsets.only(top: 14),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Amount ${_orders[index].amount}',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 12, color: Colors.black),
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Amount ${_orders[index].amount}',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 12, color: Colors.black),
+                            ),
                           ),
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Filled ${_orders[index].filled}',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 12, color: Colors.black),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Filled ${_orders[index].filled}',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 12, color: Colors.black),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                    Column(
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Price ${_orders[index].price}',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 12, color: Colors.black),
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Price ${_orders[index].price}',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 12, color: Colors.black),
+                            ),
                           ),
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Avg Price ${_orders[index].margin}',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 12, color: Colors.black),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Avg Price ${_orders[index].margin}',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 12, color: Colors.black),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -144,7 +150,6 @@ class _OrderViewState extends State<OrderView> {
           ),
           width: MediaQuery.of(context).size.width,
           color: Colors.orange,
-          height: 66,
         ),
         onTap: () {
           Navigator.push(
@@ -156,7 +161,6 @@ class _OrderViewState extends State<OrderView> {
         },
       ),
       width: MediaQuery.of(context).size.width,
-      height: 96,
     );
   }
 }
