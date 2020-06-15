@@ -17,22 +17,17 @@ class _DepthViewState extends State<DepthView> {
   void initState() {
     super.initState();
 
-    for(int i = 0; i < _length; i++) {
-      DepthModel model = DepthModel(
-          'Buy',
-          '0.234534534535 BTC',
-          '203.834534 USD');
+    for (int i = 0; i < _length; i++) {
+      DepthModel model =
+          DepthModel('Buy', '0.234534534535 BTC', '203.834534 USD');
       _buyDepth.add(model);
     }
 
-    for(int i = 0; i < _length; i++) {
-      DepthModel model = DepthModel(
-          'Buy',
-          '0.234534534535 BTC',
-          '203.834534 USD');
+    for (int i = 0; i < _length; i++) {
+      DepthModel model =
+          DepthModel('Buy', '0.234534534535 BTC', '203.834534 USD');
       _sellDepth.add(model);
     }
-
   }
 
   @override
@@ -40,12 +35,21 @@ class _DepthViewState extends State<DepthView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        DropdownButton<String> (
+        DropdownButton<String>(
           value: _dropdownValue,
-          icon: Icon(Icons.arrow_downward),
-          iconSize: 16,
+          icon: Icon(Icons.arrow_drop_down),
+          iconSize: 24,
           elevation: 24,
           style: TextStyle(color: Color(0xFF666666)),
+          underline: Container(
+            height: 0,
+            color: Colors.white,
+          ),
+          onChanged: (String newValue) {
+            setState(() {
+              _dropdownValue = newValue;
+            });
+          },
           items: <String>['0.01', '0.001', '0.0001', '0.00001']
               .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
@@ -54,9 +58,15 @@ class _DepthViewState extends State<DepthView> {
             );
           }).toList(),
         ),
-
-        Container(height: 1, width:MediaQuery.of(context).size.width, color: Color(0xFFF0F1F3), margin:const EdgeInsets.only(top: 1, bottom: 1,),),
-
+        Container(
+          height: 1,
+          width: MediaQuery.of(context).size.width,
+          color: Color(0xFFF0F1F3),
+          margin: const EdgeInsets.only(
+            top: 1,
+            bottom: 1,
+          ),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -72,7 +82,6 @@ class _DepthViewState extends State<DepthView> {
             ),
           ],
         ),
-
         ListView.builder(
           shrinkWrap: true,
           padding: EdgeInsets.only(),
@@ -82,9 +91,11 @@ class _DepthViewState extends State<DepthView> {
           },
           itemCount: _length,
         ),
-
-        Container(height: 1, width:MediaQuery.of(context).size.width, color: Color(0xFFF0F1F3),),
-
+        Container(
+          height: 1,
+          width: MediaQuery.of(context).size.width,
+          color: Color(0xFFF0F1F3),
+        ),
         ListView.builder(
           shrinkWrap: true,
           padding: EdgeInsets.only(),
