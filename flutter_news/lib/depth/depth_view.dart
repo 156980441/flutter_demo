@@ -55,19 +55,44 @@ class _DepthViewState extends State<DepthView> {
           }).toList(),
         ),
 
+        Container(height: 1, width:MediaQuery.of(context).size.width, color: Color(0xFFF0F1F3), margin:const EdgeInsets.only(top: 1, bottom: 1,),),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              'Price',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 11, color: Color(0xFF999999)),
+            ),
+            Text(
+              'Amount',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 11, color: Color(0xFF999999)),
+            ),
+          ],
+        ),
+
         ListView.builder(
+          shrinkWrap: true,
+          padding: EdgeInsets.only(),
+          itemExtent: 18,
           itemBuilder: (BuildContext context, int index) {
             return _getBuyItem(context, index, Colors.red);
           },
           itemCount: _length,
-          shrinkWrap: true,
         ),
+
+        Container(height: 1, width:MediaQuery.of(context).size.width, color: Color(0xFFF0F1F3),),
+
         ListView.builder(
+          shrinkWrap: true,
+          padding: EdgeInsets.only(),
+          itemExtent: 18,
           itemBuilder: (BuildContext context, int index) {
             return _getBuyItem(context, index, Colors.green);
           },
           itemCount: _length,
-          shrinkWrap: true,
         ),
       ],
     );
