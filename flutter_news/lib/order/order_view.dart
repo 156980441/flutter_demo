@@ -210,7 +210,6 @@ class _OrderViewState extends State<OrderView> {
             ],
           ),
           width: MediaQuery.of(context).size.width,
-          color: Colors.orange,
         ),
         onTap: () {
           Navigator.push(
