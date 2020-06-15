@@ -95,6 +95,10 @@ class _DepthViewState extends State<DepthView> {
           height: 1,
           width: MediaQuery.of(context).size.width,
           color: Color(0xFFF0F1F3),
+          margin: const EdgeInsets.only(
+            top: 3,
+            bottom: 3,
+          ),
         ),
         ListView.builder(
           shrinkWrap: true,
