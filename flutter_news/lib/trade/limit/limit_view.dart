@@ -48,41 +48,87 @@ class _LimitViewState extends State<LimitView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top:5.0, bottom: 5,),
+      padding: EdgeInsets.only(
+        top: 5.0,
+        bottom: 5,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 32, maxWidth: MediaQuery.of(context).size.width,),
-            child: TextField(
-              inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              controller: _controller,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Price',
+          Row(
+            children: <Widget>[
+              ButtonTheme(
+                minWidth: 32,
+                height: 36,
+                child: _createFlatButton('-'),
               ),
-            ),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                    maxHeight: 36,
+                    maxWidth: MediaQuery.of(context).size.width - 32 - 32 - 32),
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                  controller: _controller,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Price',
+                  ),
+                ),
+              ),
+              ButtonTheme(
+                minWidth: 32,
+                height: 36,
+                child: _createFlatButton('+'),
+              ),
+            ],
           ),
           Padding(
             padding: EdgeInsets.all(5.0),
             child: Row(
               children: <Widget>[
-                Text('Est.Value', style: TextStyle(color: Color(0xFF999999)),),
-                SizedBox(height: 2, width: 2,),
-                Text('¥15.89', style: TextStyle(color: Color(0xFF333333)),),
+                Text(
+                  'Est.Value',
+                  style: TextStyle(color: Color(0xFF999999)),
+                ),
+                SizedBox(
+                  height: 2,
+                  width: 2,
+                ),
+                Text(
+                  '¥15.89',
+                  style: TextStyle(color: Color(0xFF333333)),
+                ),
               ],
             ),
           ),
-          Container(
-            height: 32,
-            child: TextField(
-              onChanged: (String value) {},
-              onSubmitted: (String value) {},
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Amount',
+          Row(
+            children: <Widget>[
+              ButtonTheme(
+                minWidth: 32,
+                height: 36,
+                child: _createFlatButton('-'),
               ),
-            ),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                    maxHeight: 36,
+                    maxWidth: MediaQuery.of(context).size.width - 32 - 32 - 32),
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                  controller: _controller,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Amount',
+                  ),
+                ),
+              ),
+              ButtonTheme(
+                minWidth: 32,
+                height: 36,
+                child: _createFlatButton('+'),
+              ),
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
