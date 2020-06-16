@@ -3,6 +3,7 @@ import 'package:flutternews/category/category_view.dart';
 import 'package:flutternews/home/home_view.dart';
 import 'package:flutternews/order/order_view.dart';
 import 'package:flutternews/depth/depth_view.dart';
+import 'package:flutternews/trade/limit/limit_view.dart';
 //import 'package:flutter/rendering.dart';
 
 void main() {
@@ -17,26 +18,30 @@ class App extends StatelessWidget {
   }
 
   Widget _containerView() {
+    final List<Tab> list = [
+      Tab(
+        child: Text("自选", style: TextStyle(color: Colors.black)),
+      ),
+      Tab(
+        child: Text("币币", style: TextStyle(color: Colors.black)),
+      ),
+      Tab(
+        child: Text("订单", style: TextStyle(color: Colors.black)),
+      ),
+      Tab(
+        child: Text("深度", style: TextStyle(color: Colors.black)),
+      ),
+      Tab(
+        child: Text("交易", style: TextStyle(color: Colors.black)),
+      ),
+    ];
     return DefaultTabController(
-      length: 4,
+      length: list.length,
       child: MaterialApp(
         home: Scaffold(
           appBar: AppBar(
             bottom: TabBar(
-              tabs: [
-                Tab(
-                  child: Text("自选", style: TextStyle(color: Colors.black)),
-                ),
-                Tab(
-                  child: Text("币币", style: TextStyle(color: Colors.black)),
-                ),
-                Tab(
-                  child: Text("订单", style: TextStyle(color: Colors.black)),
-                ),
-                Tab(
-                  child: Text("深度", style: TextStyle(color: Colors.black)),
-                ),
-              ],
+              tabs: list,
               indicatorColor: Colors.green,
             ),
             title: Text(
@@ -45,7 +50,13 @@ class App extends StatelessWidget {
             ),
             backgroundColor: Colors.white,
           ),
-          body: TabBarView(children: [HomeView(), CategoryView(), OrderView(), DepthView(),]),
+          body: TabBarView(children: [
+            HomeView(),
+            CategoryView(),
+            OrderView(),
+            DepthView(),
+            LimitView(),
+          ]),
         ),
       ),
     );
