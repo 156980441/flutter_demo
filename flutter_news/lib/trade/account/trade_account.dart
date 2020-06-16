@@ -21,14 +21,16 @@ class _TradeAccountViewState extends State<TradeAccountView> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Text('Avail'),
-              Text('0.00000001 BTC'),
+              Text('Avail', style: TextStyle(color: Color(0xFF999999)),),
+              SizedBox(height: 2, width: 2,),
+              Text('0.00000001 USD', style: TextStyle(color: Color(0xFF999999)),),
             ],
           ),
           Row(
             children: <Widget>[
-              Text('Max buy'),
-              Text('0.00000002 BTC'),
+              Text('Max buy', style: TextStyle(color: Color(0xFF999999)),),
+              SizedBox(height: 2, width: 2,),
+              Text('0.00000002 BTC', style: TextStyle(color: Color(0xFF999999)),),
             ],
           ),
         ],

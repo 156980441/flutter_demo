@@ -31,7 +31,7 @@ class _LimitViewState extends State<LimitView> {
 
   FlatButton _createFlatButton(String title) {
     return FlatButton(
-      color: Color(0xFFF7F8FA),
+      color: Color(0x0D000000),
       textColor: Color(0xFF999999),
       disabledColor: Color(0xFFF7F8FA),
       disabledTextColor: Color(0xFF999999),
@@ -65,7 +65,13 @@ class _LimitViewState extends State<LimitView> {
           ),
           Padding(
             padding: EdgeInsets.all(5.0),
-            child: Text('Est.Value'),
+            child: Row(
+              children: <Widget>[
+                Text('Est.Value', style: TextStyle(color: Color(0xFF999999)),),
+                SizedBox(height: 2, width: 2,),
+                Text('¥15.89', style: TextStyle(color: Color(0xFF333333)),),
+              ],
+            ),
           ),
           Container(
             height: 32,

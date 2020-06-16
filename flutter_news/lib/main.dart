@@ -36,7 +36,7 @@ class App extends StatelessWidget {
         child: Text("限价", style: TextStyle(color: Colors.black)),
       ),
       Tab(
-        child: Text("杠杆", style: TextStyle(color: Colors.black)),
+        child: Text("下单", style: TextStyle(color: Colors.black)),
       ),
     ];
     return DefaultTabController(

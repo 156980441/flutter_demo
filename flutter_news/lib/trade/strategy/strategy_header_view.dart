@@ -20,10 +20,10 @@ class _StrategyHeaderViewState extends State<StrategyHeaderView> {
     super.dispose();
   }
 
-  FlatButton _createFlatButton(String title) {
+  FlatButton _createFlatButton(String title, Color color) {
     return FlatButton(
-      color: Color(0xFFF7F8FA),
-      textColor: Color(0xFF999999),
+      color: color,
+      textColor: Color(0xFFFFFFFF),
       disabledColor: Color(0xFFF7F8FA),
       disabledTextColor: Color(0xFF999999),
       padding: EdgeInsets.all(2.0),
@@ -49,12 +49,12 @@ class _StrategyHeaderViewState extends State<StrategyHeaderView> {
               ButtonTheme(
                 minWidth: MediaQuery.of(context).size.width / 2,
                 height: 30,
-                child: _createFlatButton('Buy'),
+                child: _createFlatButton('Buy', Color(0xFF4DB872)),
               ),
               ButtonTheme(
                 minWidth: MediaQuery.of(context).size.width / 2,
                 height: 30,
-                child: _createFlatButton('Sell'),
+                child: _createFlatButton('Sell', Color(0xFFEE6560)),
               ),
             ],
           ),

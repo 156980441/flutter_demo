@@ -34,6 +34,8 @@ class _ComposedTradeViewState extends State<ComposedTradeView> {
           LimitView(),
           TradeAccountView(),
           FlatButton(
+            textColor: Color(0xFFFFFFFF),
+            color: Color(0xFF4DB872),
             onPressed: () {},
             child: Text(
               'Buy',
