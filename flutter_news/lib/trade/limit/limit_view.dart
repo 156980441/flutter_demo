@@ -49,7 +49,6 @@ class _LimitViewState extends State<LimitView> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top:5.0, bottom: 5,),
-      height: 121,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

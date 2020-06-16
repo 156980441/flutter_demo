@@ -4,6 +4,7 @@ import 'package:flutternews/home/home_view.dart';
 import 'package:flutternews/order/order_view.dart';
 import 'package:flutternews/depth/depth_view.dart';
 import 'package:flutternews/trade/limit/limit_view.dart';
+import 'package:flutternews/trade/composed_trade_view.dart';
 //import 'package:flutter/rendering.dart';
 
 void main() {
@@ -32,7 +33,10 @@ class App extends StatelessWidget {
         child: Text("深度", style: TextStyle(color: Colors.black)),
       ),
       Tab(
-        child: Text("交易", style: TextStyle(color: Colors.black)),
+        child: Text("限价", style: TextStyle(color: Colors.black)),
+      ),
+      Tab(
+        child: Text("杠杆", style: TextStyle(color: Colors.black)),
       ),
     ];
     return DefaultTabController(
@@ -56,6 +60,7 @@ class App extends StatelessWidget {
             OrderView(),
             DepthView(),
             LimitView(),
+            ComposedTradeView(),
           ]),
         ),
       ),

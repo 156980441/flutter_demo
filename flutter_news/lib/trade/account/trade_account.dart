@@ -16,7 +16,6 @@ class _TradeAccountViewState extends State<TradeAccountView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 30,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
