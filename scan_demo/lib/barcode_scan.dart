@@ -15,8 +15,7 @@ class _BarcodeScanState extends State<BarcodeScan> {
   @override
   initState() {
     super.initState();
-
-    scan();
+    _scan();
   }
 
   @override
@@ -24,11 +23,12 @@ class _BarcodeScanState extends State<BarcodeScan> {
     return new Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
+      color: Colors.white,
       child: new Column(
         children: <Widget>[
           new Container(
             child: new MaterialButton(
-                onPressed: scan, child: new Text("Scan")),
+                onPressed: _scan, child: new Text("Scan")),
             padding: const EdgeInsets.all(8.0),
           ),
           new Text(barcode),
@@ -37,7 +37,7 @@ class _BarcodeScanState extends State<BarcodeScan> {
     );
   }
 
-  Future scan() async {
+  Future _scan() async {
     try {
       String barcode = await BarcodeScanner.scan();
       setState(() => this.barcode = barcode);

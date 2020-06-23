@@ -17,7 +17,9 @@ class _DetailViewState extends State<DetailView> {
   String url;
   String title;
   WebController _controller;
+
   _DetailViewState(this.url, this.title);
+
   @override
   void initState() {
     super.initState();
