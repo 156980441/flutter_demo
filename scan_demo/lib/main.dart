@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:scandemo/barcode_scan.dart';
+import 'package:r_scan/r_scan.dart';
+
+import 'package:scandemo/barcode_scan_view.dart';
+import 'package:scandemo/r_scan_view.dart';
 
 void main() {
   runApp(new MyApp());
@@ -27,7 +30,7 @@ class MainView extends StatefulWidget {
 }
 
 class _MyAppState extends State<MainView> {
-  final _suggestions = ['Barcode', 'QR'];
+  final _suggestions = ['Barcode', 'QR', 'RScran'];
 
   @override
   initState() {
@@ -55,12 +58,15 @@ class _MyAppState extends State<MainView> {
       child: ListTile(
         title: Text(pair),
       ),
-      onTap: () {
+      onTap: () async {
         Widget tmp;
         if (index == 0 ) {
           tmp = BarcodeScan();
         } else if (index == 1) {
           tmp = BarcodeScan();
+        } else if (index == 2) {
+          List<RScanCameraDescription> rScanCameras = await availableRScanCameras();
+          tmp = RScanCameraDialog(rScanCameras);
         }
         Navigator.push(
           context,
