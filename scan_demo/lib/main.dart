@@ -7,6 +7,7 @@ import 'package:scandemo/r_scan_view.dart';
 void main() {
   runApp(new MyApp());
 }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

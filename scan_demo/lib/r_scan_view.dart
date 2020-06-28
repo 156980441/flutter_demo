@@ -1,21 +1,29 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:r_scan/r_scan.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 import 'package:scandemo/r_scan/scan_image_view.dart';
 
+typedef ScanCallback = Future<void> Function();
+
 class RScanCameraDialog extends StatefulWidget {
-  List<RScanCameraDescription> rScanCameras;
+  final List<RScanCameraDescription> rScanCameras;
   RScanCameraDialog(this.rScanCameras);
   @override
-  _RScanCameraDialogState createState() => _RScanCameraDialogState(rScanCameras);
+  _RScanCameraDialogState createState() =>
+      _RScanCameraDialogState(rScanCameras);
 }
 
 class _RScanCameraDialogState extends State<RScanCameraDialog> {
+  RScanResult result;
   RScanCameraController _controller;
   bool isFirst = true;
-
   List<RScanCameraDescription> rScanCameras;
-  _RScanCameraDialogState(this.rScanCameras);
 
+  _RScanCameraDialogState(this.rScanCameras);
 
   @override
   void initState() {
@@ -50,6 +58,30 @@ class _RScanCameraDialogState extends State<RScanCameraDialog> {
 
   @override
   Widget build(BuildContext context) {
+    AppBar _appbar = AppBar(
+      title: Text('Scan'),
+      actions: <Widget>[
+        GestureDetector(
+          child: Container(
+            child: Icon(Icons.add),
+            width: 60,
+          ),
+          onTap: () async {
+            if (await canReadStorage()) {
+              var image =
+                  await ImagePicker.pickImage(source: ImageSource.gallery);
+              if (image != null) {
+                final result = await RScan.scanImagePath(image.path);
+                setState(() {
+                  this.result = result;
+                });
+              }
+            }
+          },
+        ),
+      ],
+    );
+
     if (rScanCameras == null || rScanCameras.length == 0) {
       return Scaffold(
         body: Container(
@@ -62,8 +94,10 @@ class _RScanCameraDialogState extends State<RScanCameraDialog> {
       return Container();
     }
     return Scaffold(
+      appBar: _appbar,
       backgroundColor: Colors.black,
       body: Stack(
+        fit: StackFit.expand,
         children: <Widget>[
           ScanImageView(
             child: AspectRatio(
@@ -90,24 +124,42 @@ class _RScanCameraDialogState extends State<RScanCameraDialog> {
     return isOpen;
   }
 
+  Future<bool> canReadStorage() async {
+    if (Platform.isIOS) return true;
+    var status = await PermissionHandler()
+        .checkPermissionStatus(PermissionGroup.storage);
+    if (status != PermissionStatus.granted) {
+      var future = await PermissionHandler()
+          .requestPermissions([PermissionGroup.storage]);
+      for (final item in future.entries) {
+        if (item.value != PermissionStatus.granted) {
+          return false;
+        }
+      }
+    } else {
+      return true;
+    }
+    return true;
+  }
+
   Widget _buildFlashBtn(BuildContext context, AsyncSnapshot<bool> snapshot) {
     return snapshot.hasData
         ? Padding(
-      padding: EdgeInsets.only(
-          bottom: 24 + MediaQuery.of(context).padding.bottom),
-      child: IconButton(
-          icon: Icon(snapshot.data ? Icons.flash_on : Icons.flash_off),
-          color: Colors.white,
-          iconSize: 46,
-          onPressed: () {
-            if (snapshot.data) {
-              _controller.setFlashMode(false);
-            } else {
-              _controller.setFlashMode(true);
-            }
-            setState(() {});
-          }),
-    )
+            padding: EdgeInsets.only(
+                bottom: 24 + MediaQuery.of(context).padding.bottom),
+            child: IconButton(
+                icon: Icon(snapshot.data ? Icons.flash_on : Icons.flash_off),
+                color: Colors.white,
+                iconSize: 46,
+                onPressed: () {
+                  if (snapshot.data) {
+                    _controller.setFlashMode(false);
+                  } else {
+                    _controller.setFlashMode(true);
+                  }
+                  setState(() {});
+                }),
+          )
         : Container();
   }
 }
