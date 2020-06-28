@@ -59,17 +59,19 @@ class _RScanCameraDialogState extends State<RScanCameraDialog> {
   @override
   Widget build(BuildContext context) {
     AppBar _appbar = AppBar(
+      backgroundColor: Color(0x000000),
       title: Text('Scan'),
       actions: <Widget>[
         GestureDetector(
           child: Container(
-            child: Icon(Icons.add),
+            child: Icon(Icons.add_photo_alternate),
             width: 60,
           ),
           onTap: () async {
             if (await canReadStorage()) {
+              final ImagePicker picker = ImagePicker();
               var image =
-                  await ImagePicker.pickImage(source: ImageSource.gallery);
+                  await picker.getImage(source: ImageSource.gallery);
               if (image != null) {
                 final result = await RScan.scanImagePath(image.path);
                 setState(() {
@@ -95,7 +97,7 @@ class _RScanCameraDialogState extends State<RScanCameraDialog> {
     }
     return Scaffold(
       appBar: _appbar,
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -105,6 +107,7 @@ class _RScanCameraDialogState extends State<RScanCameraDialog> {
               child: RScanCamera(_controller),
             ),
           ),
+          Container (child: Text('二维码解析错误，请核对后再次尝试', style:TextStyle(color: Colors.white, fontSize: 11),),),
           Align(
               alignment: Alignment.bottomCenter,
               child: FutureBuilder(
